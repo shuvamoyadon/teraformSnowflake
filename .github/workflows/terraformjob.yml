@@ -19,7 +19,7 @@ env:
   #SNOWFLAKE_USER: ${{ secrets.SNOWFLAKE_USER }}
   #SNOWFLAKE_PASSWORD: ${{ secrets.SNOWFLAKE_PASSWORD }}
   #SNOWFLAKE_ROLE: ${{ secrets.SNOWFLAKE_ROLE }}
-  ROOT_PATH: '${{github.workspace}}/terraformSnowflake/'
+  ROOT_PATH: '${{github.workspace}}/'
 jobs:
   snowflake-terraform-demo:
     name: "Snowflake Terraform Demo Job"
