@@ -8,13 +8,6 @@ terraform {
 }
 
 provider "snowflake" {
-  account                = "eg42130"
-  username               = "ADITI007"
-  role     =  "ACCOUNTADMIN"
-
-}
-
-provider "snowflake" {
   account  = "eg42130"
   region   = "us-east-2.aws"
   username = "ADITI007"
