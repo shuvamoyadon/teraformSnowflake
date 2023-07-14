@@ -19,7 +19,7 @@ env:
   #SNOWFLAKE_USER: ${{ secrets.SNOWFLAKE_USER }}
   #SNOWFLAKE_PASSWORD: ${{ secrets.SNOWFLAKE_PASSWORD }}
   #SNOWFLAKE_ROLE: ${{ secrets.SNOWFLAKE_ROLE }}
-  #ROOT_PATH: '${{github.workspace}}/'
+  ROOT_PATH: '${{github.workspace}}/'
 jobs:
   snowflake-terraform-demo:
     name: "Snowflake Terraform Demo Job"
@@ -43,15 +43,15 @@ jobs:
       - name: Terraform Init
         id: init
         run: terraform init
-        #working-directory: ${{ env.ROOT_PATH }}
+        working-directory: ${{ env.ROOT_PATH }}
 
       - name: Terraform Validate
         id: validate
         run: terraform validate -no-color
-        #working-directory: ${{ env.ROOT_PATH }}
+        working-directory: ${{ env.ROOT_PATH }}
 
       - name: Terraform Apply
         id: apply
         run: terraform apply -auto-approve
-        #working-directory: ${{ env.ROOT_PATH }}
+        working-directory: ${{ env.ROOT_PATH }}
     
