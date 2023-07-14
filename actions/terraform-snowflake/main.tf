@@ -8,18 +8,20 @@ terraform {
 }
 
 provider "snowflake" {
+
   role     =  "ACCOUNTADMIN"
+
 }
 
 resource "snowflake_database" "example" {
-  name = "EXAMPLE_DATABASE"
+  name = "mydb"
   comment = "A database created by terraform"
 }
 
 resource "snowflake_warehouse" "example" {
-  name = "EXAMPLE_WAREHOUSE"
-  warehouse_size = "X-SMALL"
-  auto_suspend = 60
+  name = "COMPUTE_WH"
+  warehouse_size = "SMALL"
+  auto_suspend = 70
   auto_resume = false
   initially_suspended = true
 }
