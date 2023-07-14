@@ -1,79 +1,35 @@
-name: 'Terraform'
+name: "Snowflake Terraform Demo Workflow"
 
 on:
   push:
-    branches: [ "main" ]
-  pull_request:
+    branches:
+      - main
 
-permissions:
-  contents: read
-
-
-defaults:
-  run:
-    shell: bash
-env:
-  TF_VERSION: 'latest'
-  #tok- vadPnf7rJ6hIxA.atlasv1.SX1o2c1ARivMfHx6vSnyGfN6gEiBmTZsDsVeoia90UvY4OSwEyUKQvSSmEE8eiO34vk
-  #SNOWFLAKE_ACCOUNT: ${{ secrets.SNOWFLAKE_ACCOUNT }}
-  #SNOWFLAKE_USER: ${{ secrets.SNOWFLAKE_USER }}
-  #SNOWFLAKE_PASSWORD: ${{ secrets.SNOWFLAKE_PASSWORD }}
-  #SNOWFLAKE_ROLE: ${{ secrets.SNOWFLAKE_ROLE }}
-  ROOT_PATH: '${{github.workspace}}/actions/terraform-snowflake'
-  
 jobs:
-  terraform_plan:
-    name: 'terraform plan'
+  snowflake-terraform-demo:
+    name: "Snowflake Terraform Demo Job"
     runs-on: ubuntu-latest
-    
     steps:
-    - name: Checkout
-      uses: actions/checkout@v2
+      - name: Checkout
+        uses: actions/checkout@v2
 
-    - name: Setup terraform
-      uses: hashicorp/setup-terraform@v1
-      with:
-        cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
-  
-    - name: terraform init
-      run: terraform init
-      working-directory: ${{ env.ROOT_PATH }}
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v1
+        with:
+          cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
 
-    - name: terraform Plan
-      run: terraform plan 
-      working-directory: ${{ env.ROOT_PATH }}
-  
-  terraform_apply:
-    name: 'terraform apply'
-    needs: [terraform_plan]
-    runs-on: ubuntu-latest
-    environment: production
-    
-    defaults:
-      run:
-        shell: bash
+      - name: Terraform Format
+        id: fmt
+        run: terraform fmt -check
 
-    steps:
-    - name: Checkout
-      uses: actions/checkout@v2
+      - name: Terraform Init
+        id: init
+        run: terraform init
 
-    - name: Setup terraform
-      uses: hashicorp/setup-terraform@v1
-      with:
-        cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
-  
-    - name: terraform Init
-      run: terraform init
-      working-directory: ${{ env.ROOT_PATH }}
+      - name: Terraform Validate
+        id: validate
+        run: terraform validate -no-color
 
-    - name: terraform Init
-      run: echo 'var -> ${{inputs.tf_destroy}}'
-      working-directory: ${{ env.ROOT_PATH }}
-
-      #github.ref == 'refs/heads/main' && github.event_name == 'push'
-    - name: terraform Apply
-      run: terraform apply -auto-approve
-      if: ${{inputs.tf_destroy}} == false
-      working-directory: ${{ env.ROOT_PATH }}
-
-    
+      - name: Terraform Apply
+        id: apply
+        run: terraform apply -auto-approve
