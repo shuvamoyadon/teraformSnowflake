@@ -18,7 +18,7 @@ env:
   SNOWFLAKE_USER: ${{ secrets.SNOWFLAKE_USER }}
   SNOWFLAKE_PASSWORD: ${{ secrets.SNOWFLAKE_PASSWORD }}
   SNOWFLAKE_ROLE: ${{ secrets.SNOWFLAKE_ROLE }}
-  ROOT_PATH: '${{github.workspace}}/actions/terraform-snowflake'
+  ROOT_PATH: '/home/runner/work/teraformSnowflake/actions/terraform-snowflake'
   
 jobs:
   terraform_plan:
