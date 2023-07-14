@@ -1,10 +1,25 @@
-name: "Snowflake Terraform Demo Workflow"
+name: 'Terraform'
 
 on:
   push:
-    branches:
-      - main
+    branches: [ "main" ]
+  pull_request:
 
+permissions:
+  contents: read
+
+
+defaults:
+  run:
+    shell: bash
+env:
+  TF_VERSION: 'latest'
+  #tok- vadPnf7rJ6hIxA.atlasv1.SX1o2c1ARivMfHx6vSnyGfN6gEiBmTZsDsVeoia90UvY4OSwEyUKQvSSmEE8eiO34vk
+  #SNOWFLAKE_ACCOUNT: ${{ secrets.SNOWFLAKE_ACCOUNT }}
+  #SNOWFLAKE_USER: ${{ secrets.SNOWFLAKE_USER }}
+  #SNOWFLAKE_PASSWORD: ${{ secrets.SNOWFLAKE_PASSWORD }}
+  #SNOWFLAKE_ROLE: ${{ secrets.SNOWFLAKE_ROLE }}
+  ROOT_PATH: '${{github.workspace}}/actions/terraform-snowflake'
 jobs:
   snowflake-terraform-demo:
     name: "Snowflake Terraform Demo Job"
@@ -25,11 +40,15 @@ jobs:
       - name: Terraform Init
         id: init
         run: terraform init
+        working-directory: ${{ env.ROOT_PATH }}
 
       - name: Terraform Validate
         id: validate
         run: terraform validate -no-color
+        working-directory: ${{ env.ROOT_PATH }}
 
       - name: Terraform Apply
         id: apply
         run: terraform apply -auto-approve
+        working-directory: ${{ env.ROOT_PATH }}
+    
