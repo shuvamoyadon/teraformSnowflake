@@ -1,3 +1,12 @@
+terraform {
+  required_providers {
+    snowflake = {
+      source  = "Snowflake-Labs/snowflake"
+      version = "~> 0.61"
+    }
+  }
+}
+
 provider "snowflake" {
   role     =  "ACCOUNTADMIN"
 }
