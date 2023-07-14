@@ -14,7 +14,6 @@ defaults:
     shell: bash
 env:
   TF_VERSION: 'latest'
-  TF_ACTION_WORKING_DIR: '.'
   SNOWFLAKE_ACCOUNT: ${{ secrets.SNOWFLAKE_ACCOUNT }}
   SNOWFLAKE_USER: ${{ secrets.SNOWFLAKE_USER }}
   SNOWFLAKE_PASSWORD: ${{ secrets.SNOWFLAKE_PASSWORD }}
