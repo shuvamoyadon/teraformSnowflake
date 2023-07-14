@@ -14,6 +14,14 @@ provider "snowflake" {
 
 }
 
+provider "snowflake" {
+  account  = "eg42130"
+  region   = "us-east-2.aws"
+  username = "ADITI007"
+  password = "Iamhere1"
+  role     = "ACCOUNTADMIN"
+}
+
 resource "snowflake_database" "example" {
   name = "mydb"
   comment = "A database created by terraform"
