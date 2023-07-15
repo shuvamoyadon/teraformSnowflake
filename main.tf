@@ -6,14 +6,6 @@ terraform {
     }
   }
 
-  backend "remote" {
-    organization = "myteraformcloud"
-
-    workspaces {
-      name = "workspace1"
-    }
-  }
-}
 
 provider "snowflake" {
 }
