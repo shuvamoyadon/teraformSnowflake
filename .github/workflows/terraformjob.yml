@@ -15,10 +15,6 @@ defaults:
 env:
   TF_VERSION: 'latest'
   #tok- vadPnf7rJ6hIxA.atlasv1.SX1o2c1ARivMfHx6vSnyGfN6gEiBmTZsDsVeoia90UvY4OSwEyUKQvSSmEE8eiO34vk
-  # SNOWFLAKE_ACCOUNT: ${{ secrets.SNOWFLAKE_ACCOUNT }}
-  # SNOWFLAKE_USER: ${{ secrets.SNOWFLAKE_USER }}
-  # SNOWFLAKE_PASSWORD: ${{ secrets.SNOWFLAKE_PASSWORD }}
-  # SNOWFLAKE_ROLE: ${{ secrets.SNOWFLAKE_ROLE }}
   ROOT_PATH: '${{github.workspace}}/'
 jobs:
   snowflake-terraform-demo:
