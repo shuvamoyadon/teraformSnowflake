@@ -1,12 +1,3 @@
-terraform {
-  required_providers {
-    snowflake = {
-      source  = "chanzuckerberg/snowflake"
-      version = "0.25.17"
-    }
-  }
-}
-
 provider "snowflake" {
   account  = "eg42130" # the Snowflake account identifier
   username = "aditi007"
