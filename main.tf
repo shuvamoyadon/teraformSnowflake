@@ -5,7 +5,7 @@ terraform {
       version = "0.25.17"
     }
   }
-
+}
 
 provider "snowflake" {
 }
