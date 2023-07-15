@@ -12,7 +12,6 @@ provider "snowflake" {
   username               = "aditi007"
   password               = "Iamhere1"
   role                   = "ACCOUNTADMIN"
-  region                 = "us-east-2"
 }
 
 resource "snowflake_database" "demo_db" {
