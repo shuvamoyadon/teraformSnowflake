@@ -8,7 +8,6 @@ terraform {
 }
 
 provider "snowflake" {
-  username = "aditi007"
   role = "ACCOUNTADMIN"
 }
 
