@@ -9,6 +9,7 @@ terraform {
 
 provider "snowflake" {
   role = "ACCOUNTADMIN"
+  username = "ADITI007"
 }
 
 resource "snowflake_database" "demo_db" {
