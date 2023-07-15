@@ -8,10 +8,10 @@ terraform {
 }
 
 provider "snowflake" {
-  account                = "eg42130" 
-  username               = "aditi007"
-  password               = "Iamhere1"
-  role                   = "ACCOUNTADMIN"
+  account = "eg42130" 
+  username = "aditi007"
+  password = "Iamhere1"
+  role = "ACCOUNTADMIN"
 }
 
 resource "snowflake_database" "demo_db" {
