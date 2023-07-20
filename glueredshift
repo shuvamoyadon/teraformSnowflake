@@ -1,0 +1,59 @@
+import sys
+from awsglue.transforms import *
+from awsglue.utils import getResolvedOptions
+from pyspark.context import SparkContext
+from awsglue.context import GlueContext
+from awsglue.job import Job
+import boto3
+import json
+
+## @params: [JOB_NAME]
+args = getResolvedOptions(sys.argv, ['JOB_NAME'])
+
+sc = SparkContext()
+glueContext = GlueContext(sc)
+spark = glueContext.spark_session
+kinesis = boto3.client('kinesis', region_name='us-east-1')
+redshift_url = "jdbc:redshift://myredshift.csdokk1e3rfo.us-east-1.redshift.amazonaws.com:5439/dev"
+
+redshift_properties = {
+    "user": "awsuser",
+    "password": "Iamhere1",
+    "driver": "com.amazon.redshift.jdbc42.Driver"
+}
+
+df = spark.read \
+    .format("jdbc") \
+    .option("url", redshift_url) \
+    .option("dbtable", "public.category") \
+    .option("user", redshift_properties["user"]) \
+    .option("password", redshift_properties["password"]) \
+    .option("driver", redshift_properties["driver"]) \
+    .load()
+    
+
+client = boto3.client('kinesis')
+for value in df.toJSON().toLocalIterator():
+    jsondict=json.loads(value)
+    response = client.put_record(
+         StreamName = "mystream",
+         Data = bytes(json.dumps(jsondict), 'utf-8'),
+         PartitionKey = str('catgroup')
+    )
+
+# def send_to_kinesis(value):
+#  response = client.put_record(
+#      StreamName = "mystream",
+#      Data = bytes(json.dumps(jsondict), 'utf-8'),
+#      PartitionKey = str('catgroup')
+#     )
+
+#json_rdd.foreach(send_to_kinesis)
+print("loaded done")
+
+
+
+
+
+
+
