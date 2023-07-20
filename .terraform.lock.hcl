@@ -19,3 +19,8 @@ provider "registry.terraform.io/chanzuckerberg/snowflake" {
     "zh:d27283ea0e2cea7915150b7e8f0a971240ee030253d2c46cd130de0737d8bc80",
     "zh:e7744fc60e577ebc27f043d1772d062c2339ed9655751ee45ad3e7f3da62fa44",
     "zh:e9109be8fa93958eff749f38bcf0f06c2fb94deeaf93dbf1e1c2d65dc9ce7bdd",
+    "zh:f00ccd7727dd1cdb00f92d9248eb14b30ab0a4cb1fd69e6175e9118cb20c5a31",
+    "zh:f9138258f98b38dd3cd323d8e15daa939f73dcef87f8b294ae59454b4434a640",
+    "zh:fa1cd7441ea73af74d8badccc40039d09c5cedb87f7ee5fcf93072038b81d5a9",
+  ]
+}
