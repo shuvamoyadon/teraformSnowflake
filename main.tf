@@ -10,7 +10,7 @@ terraform {
 provider "snowflake" {
   account  = "eg42130" # the Snowflake account identifier
   username = "aditi007"
-  password = "Iamhere1"
+  password = "Ia"
   region = "us-east-2.aws"
   role = "ACCOUNTADMIN"
 }
